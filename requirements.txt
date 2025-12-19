@@ -8,3 +8,6 @@ opencv-python
 
 # Streamlit
 streamlit-webrtc
+
+# Tracking
+supervision

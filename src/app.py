@@ -2,26 +2,49 @@ from streamlit_webrtc import webrtc_streamer
 import av
 from handlers.pipeline_handler import run_pipeline
 import cv2
+import traceback
+import numpy as np
 
 def video_frame_callback(frame):
-    img = frame.to_ndarray(format="bgr24")
-    
-    result = run_pipeline(img)
-    print(result)
-    
-    for human in result.get("detections", []):
-        x1, y1, x2, y2 = human["bbox"]
-        label = human["label"]      
-        conf = human["confidence"]   
+    try:
+        img = frame.to_ndarray(format="bgr24")
         
-        cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
-        cv2.putText(img, f"{label} ({conf:.2f})",
-                    (x1, y1 - 10), 
-                    cv2.FONT_HERSHEY_SIMPLEX, 
-                    0.6, 
-                    (0, 255, 0), 
-                    2)
+        # For detections
+        # result = run_pipeline(img)
+        # print(result)
         
-    return av.VideoFrame.from_ndarray(img, format="bgr24")
+        # for human in result.get("detections", []):
+        #     x1, y1, x2, y2 = human["bbox"]
+        #     label = human["label"]      
+        #     conf = human["confidence"]   
+            
+        #     cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
+        #     cv2.putText(img, f"{label} ({conf:.2f})",
+        #                 (x1, y1 - 10), 
+        #                 cv2.FONT_HERSHEY_SIMPLEX, 
+        #                 0.6, 
+        #                 (0, 255, 0), 
+        #                 2)
+        
+        # return av.VideoFrame.from_ndarray(img, format="bgr24")
+        
+        
+        # For Tracking
+        annotated = run_pipeline(img)
+        if annotated is None:
+            raise ValueError("run_pipeline returned None")
 
+        if not isinstance(annotated, np.ndarray):
+            raise TypeError(f"Expected ndarray, got {type(annotated)}")
+        
+        return av.VideoFrame.from_ndarray(annotated, format="bgr24")
+    
+    except Exception as e:
+        print("VIDEO CALLBACK ERROR")
+        print(traceback.format_exc())
+
+        # Return raw frame so stream does NOT freeze
+        return frame
+    
+    
 webrtc_streamer(key="example", video_frame_callback=video_frame_callback)
