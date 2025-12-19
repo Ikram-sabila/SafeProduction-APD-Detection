@@ -1,0 +1,10 @@
+# Main Core
+pandas
+numpy
+
+# YOLO
+ultralytics 
+opencv-python
+
+# Streamlit
+streamlit-webrtc
