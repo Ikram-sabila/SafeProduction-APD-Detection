@@ -90,7 +90,7 @@ pip install -r requirements.txt
 Place your YOLO model inside:
 
 ```
-src/models/human.pt
+models/human.pt
 ```
 
 Example (YOLOv8 nano):
@@ -102,7 +102,7 @@ yolo download model=yolov8n.pt
 Rename or move it to:
 
 ```
-src/models/human.pt
+models/human.pt
 ```
 
 ---
@@ -164,3 +164,4 @@ Allow webcam access when prompted.
 
 This project is for academic and research purposes.
 You are free to modify and extend it.
+
