@@ -20,13 +20,15 @@ The project is designed for safety-related use cases (e.g. APD/PPE monitoring) a
 ```
 SafeProduction/
 ├── config/                            # Configuration files
-├── models/                            # Trained YOLO models (.pt)
-│   └── human.pt
 ├── src/
 │ ├── app.py                           # Streamlit entry point
 │ ├── handlers/
 │ │   ├── pipeline_handler.py            # Main CV pipeline
 │ │   └── human_handler.py               # Human detection & tracking handler
+│ ├── models/                           # Trained YOLO models (.pt)
+│ │   ├── downloader.py                 # Downloading models from gdrive
+│ │   ├── human.pt     
+| |   └── ppe_construction.pt          
 │ ├── vision_models/
 │ │   └── human/
 │ │       ├── model.py                   # YOLO model wrapper
@@ -35,7 +37,7 @@ SafeProduction/
 │ ├── utils/                           # Helper utilities (future use)
 │ └── schemas/                         # Data schemas (future use)
 ├── venv/                              # Python virtual environment
-├── .env                               # Environment variables
+├── .env.example                       # Environment variables
 ├── .gitignore
 ├── requirements.txt
 └── README.md

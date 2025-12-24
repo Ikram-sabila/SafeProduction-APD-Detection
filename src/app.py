@@ -1,12 +1,28 @@
 from streamlit_webrtc import webrtc_streamer
+import streamlit as st
 import av
 from handlers.pipeline_handler import run_pipeline
+from models.downloader import download_files
 import cv2
 import traceback
 import numpy as np
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+MODELS_GOOGLE_DRIVE = os.getenv("MODELS_GOOGLE_DRIVE")
+
+@st.cache_resource
+def prepare_models():
+    # Run models downloader
+    download_files(MODELS_GOOGLE_DRIVE, './src/models')
+    
+prepare_models()
 
 def video_frame_callback(frame):
     try:
+        
         img = frame.to_ndarray(format="bgr24")
         
         # For detections

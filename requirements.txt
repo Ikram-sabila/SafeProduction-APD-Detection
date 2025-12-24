@@ -1,12 +1,15 @@
 # Main Core
+dotenv
 pandas
 numpy
+gdown
 
 # YOLO
 ultralytics 
 opencv-python
 
 # Streamlit
+streamlit
 streamlit-webrtc
 
 # Tracking
