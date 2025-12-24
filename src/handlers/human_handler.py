@@ -2,7 +2,7 @@ from vision_models.human.predictor import HumanPredictor
 
 class HumanHandler:
     def __init__(self):
-        self.MODEL_PATH = "models/human.pt"
+        self.MODEL_PATH = "src/models/human.pt"
         self.human_predictor = HumanPredictor(self.MODEL_PATH)
 
     def process_human_detections(self, frame):

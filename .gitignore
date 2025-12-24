@@ -10,9 +10,9 @@ venv/
 .streamlit/
 
 # Model files
-models/*.pt
-models/*.onnx
-models/*.h5
+src/models/*.pt
+src/models/*.onnx
+src/models/*.h5
 
 # Data
 
