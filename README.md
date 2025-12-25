@@ -89,24 +89,7 @@ pip install -r requirements.txt
 
 ## 📥 3. Download YOLO Model
 
-Place your YOLO model inside:
-
-```
-models/human.pt
-```
-
-Example (YOLOv8 nano):
-
-```bash
-yolo download model=yolov8n.pt
-```
-
-Rename or move it to:
-
-```
-models/human.pt
-```
-
+Use file downloader.py to download the models, but dont forget to put the url drive inside the .env file.
 ---
 
 ## ▶️ 4. Run the Application
@@ -166,4 +149,5 @@ Allow webcam access when prompted.
 
 This project is for academic and research purposes.
 You are free to modify and extend it.
+
 
